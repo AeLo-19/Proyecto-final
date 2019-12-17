@@ -1,6 +1,6 @@
 {
-	"name": "react-hello-webapp",
-	"version": "1.0.1",
+	"name": "Gestor-de-clientes",
+	"version": "1.0.0",
 	"description": "",
 	"main": "index.js",
 	"scripts": {
@@ -11,19 +11,9 @@
 		"deploy": "node deploy-to-github.js"
 	},
 	"author": {
-		"name": "Alejandro Sanchez",
-		"url": "http://alesanchezr.com/"
+		"name": "Adrian Lopez",
+		"url": "https://github.com/AeLo-19/Proyecto-final"
 	},
-	"contributors": [
-		{
-			"name": "Alejandro Sanchez",
-			"url": "http://alesanchezr.com/"
-		},
-		{
-			"name": "Ignacio Cordoba",
-			"url": "http://github.com/nachovz"
-		}
-	],
 	"license": "ISC",
 	"devDependencies": {
 		"@babel/cli": "^7.4.3",
