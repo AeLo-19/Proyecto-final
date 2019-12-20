@@ -1,0 +1,16 @@
+@font-face{
+    font-family: "Young font";
+    src: url(./fonts/Young.ttf) format("truetype");
+}
+@font-face{
+    font-family: "Levenim";
+    src: url(./fonts/lvnm.ttf);
+}
+
+.texto{
+    font-family: "Young font"
+}
+
+.titulo{
+    font-family: "Levenim";
+}

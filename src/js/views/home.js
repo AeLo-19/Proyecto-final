@@ -1,6 +1,7 @@
 import React from "react";
 import emlLogo from "../../img/EML-logo.png";
 import "../../styles/home.scss";
+import { Link } from "react-router-dom";
 
 export const Home = () => (
 	<div className="border m-3">
@@ -21,9 +22,11 @@ export const Home = () => (
 					Entrar
 				</button>
 				{/* <link> */}
-				<button type="button" className="btn btn-primary">
-					Registrarse
-				</button>
+				<Link to="/register">
+					<button type="button" className="btn btn-primary">
+						Registrarse
+					</button>
+				</Link>
 			</div>
 		</form>
 	</div>
