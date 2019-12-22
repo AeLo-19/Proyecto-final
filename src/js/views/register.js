@@ -1,13 +1,10 @@
 import React, { useState, useEffect, useContext } from "react";
 import emlLogo from "../../img/EML-Isotype.png";
-
-import { Context } from "../store/appContext";
+import { Link } from "react-router";
 
 import "../../styles/register.scss";
 
 export const Register = () => {
-	const { store, actions } = useContext(Context);
-
 	return (
 		<div className="border" m-2>
 			<div className="container border">
@@ -16,21 +13,44 @@ export const Register = () => {
 						<img src={emlLogo} width="125px" height="125px" />
 					</div>
 					<div className="col-12 text-center">
-						<h1 className="titulo">¡Bienvenido!</h1>
-						<p className="texto" />
+						<h1 className="texto">¡Bienvenido!</h1>
+					</div>
+					<div className="col-12  m-1">
+						<p className="texto">Por favor llenar los siguientes datos para su registro.</p>
 					</div>
 				</div>
 			</div>
 			<form>
-				<input />
-				<input />
-				<div className="border" />
-				<input />
+				<div className="col-12 border m-1">
+					<h5 className="texto">Nombres</h5>
+					<input />
+					<h5 className="texto">Apellidos</h5>
+					<input />
+				</div>
+				<div className="col-12 m-1 border">
+					<h5 className="texto">Correo</h5>
+					<input />
+				</div>
+
 				{/*vaina de la edad */}
-				<input />
+				{/* <input /> */}
 				{/*confirmar que las dos claves sean iguales */}
-				<input />
-				<input />
+				<div className="border m-1 col-12">
+					<h5 className="texto">Contraseña</h5>
+					<input />
+					<h5 className="texto">Confirmar Contraseña</h5>
+					<input />
+				</div>
+				<div className="border m-1 col-12">
+					<h5 className="texto">Cédula</h5>
+					<input />
+				</div>
+
+				<Link to="/home">
+					<div className="border col-12 text-center">
+						<button className="btn primary">Crear</button>
+					</div>
+				</Link>
 			</form>
 		</div>
 	);
