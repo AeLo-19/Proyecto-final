@@ -21,7 +21,8 @@ export const Login = () => (
 				<button type="button" className="btn btn-primary">
 					Entrar
 				</button>
-				{/* <link> */}
+			</div>
+			<div className="borde">
 				<Link to="/register">
 					<button type="button" className="btn btn-primary">
 						Registrarse
