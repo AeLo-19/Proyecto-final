@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import emlLogo from "../../img/EML-Isotype.png";
 import { Link } from "react-router-dom";
+import { ModalRegister } from "../component/ModalRegister";
 
 import "../../styles/register.scss";
 
@@ -10,13 +11,14 @@ export const Register = () => {
 	const [isBtnDisable, setIsBtnDisable] = useState(true);
 	const [confirmPassword, setconfirmPassword] = useState("");
 	const [passwordValid, setPasswordValid] = useState(false);
-	const [validation, setValidation] = useState({
+	const [info, setInfo] = useState({
 		nombre: "",
 		apellido: "",
 		correo: "",
 		edad: "",
 		cedula: ""
 	});
+	const [show, setShow] = useState(false);
 	const actualizarEstado = e => {
 		setconfirmPassword(e.target.value);
 	};
@@ -24,22 +26,20 @@ export const Register = () => {
 		setPassword(e.target.value);
 	};
 	const handleValidation = e => {
-		setValidation({
-			...validation,
+		setInfo({
+			...info,
 			[e.target.name]: e.target.value
 		});
 	};
 	const iniciarValidacion = e => {
 		e.preventDefault();
-		if (
-			validation.name === "" ||
-			validation.apellido === "" ||
-			validation.correo === "" ||
-			validation.edad === "" ||
-			validation.cedula === ""
-		) {
+		console.log("validando");
+		if (info.name === "" || info.apellido === "" || info.correo === "" || info.edad === "" || info.cedula === "") {
+			console.log("encontramos un problema");
 			setError(true);
 		} else {
+			console.log("éxito, mostrando modal");
+			setShow(true);
 		}
 	};
 	useEffect(
@@ -129,10 +129,8 @@ export const Register = () => {
 						<h5 className="texto">Cédula</h5>
 					</div>
 					<div className="col-3">
-						<select className="form-control">
-							<option value="Venezolana" selected>
-								V-
-							</option>
+						<select className="form-control" defaultValue={"Venezolana"}>
+							<option value="Venezolana">V-</option>
 							<option value="Extranjera">E-</option>
 						</select>
 					</div>
@@ -147,6 +145,7 @@ export const Register = () => {
 				</div>
 				<div className="col-12">{validationError}</div>
 			</form>
+			<ModalRegister show={show} info={info} />
 		</div>
 	);
 };
