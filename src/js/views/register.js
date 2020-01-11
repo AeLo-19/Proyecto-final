@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import emlLogo from "../../img/EML-Isotype.png";
 import { Link } from "react-router-dom";
 import { ModalRegister } from "../component/ModalRegister";
+import { Modal, Button } from "react-bootstrap";
 
 import "../../styles/register.scss";
 
@@ -31,10 +32,17 @@ export const Register = () => {
 			[e.target.name]: e.target.value
 		});
 	};
+
 	const iniciarValidacion = e => {
 		e.preventDefault();
 		console.log("validando");
-		if (info.name === "" || info.apellido === "" || info.correo === "" || info.edad === "" || info.cedula === "") {
+		if (
+			info.nombre === "" ||
+			info.apellido === "" ||
+			info.correo === "" ||
+			info.edad === "" ||
+			info.cedula === ""
+		) {
 			console.log("encontramos un problema");
 			setError(true);
 		} else {
@@ -59,7 +67,12 @@ export const Register = () => {
 		[password, confirmPassword]
 	);
 
+	const handleClose = () => {
+		setShow(false);
+	};
+
 	var validationError;
+
 	if (error) {
 		validationError = (
 			<div className="text-danger">
@@ -145,7 +158,7 @@ export const Register = () => {
 				</div>
 				<div className="col-12">{validationError}</div>
 			</form>
-			<ModalRegister show={show} info={info} />
+			<ModalRegister handleClose={handleClose} show={show} nombre={info.nombre} />
 		</div>
 	);
 };

@@ -1,32 +1,30 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { Modal, Button } from "react-bootstrap";
 import PropTypes from "prop-types";
 
-export const ModalRegister = props => {
+export const ModalRegister = ({ show, nombre, handleClose }) => {
+	useEffect(() => {
+		console.log("show: ", show, " nombre: ", nombre, " func: ", handleClose);
+	}, []);
 	return (
-		<div className={props.show ? "bg-dark" : "modal invisible"} tabIndex="-1" role="dialog">
-			<div className="modal-dialog" role="document">
-				<div className="modal-content">
-					<div className="modal-header">
-						<h5 className="modal-title">Modal title</h5>
-						<button type="button" className="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-					<div className="modal-body">
-						<p>{"Hola " + props.info.name + ", has sido regustrado efectivamente."}</p>
-					</div>
-					<div className="modal-footer">
-						<button type="button" className="btn btn-primary">
-							Entrar
-						</button>
-					</div>
-				</div>
-			</div>
+		<div>
+			<Modal show={show} onHide={handleClose}>
+				<Modal.Header>
+					<Modal.Title>Soy el título</Modal.Title>
+				</Modal.Header>
+				<Modal.Body>{"Esto es el cuerpo" + nombre + "ok?"}</Modal.Body>
+				<Modal.Footer>
+					<Button variant="primary" onClick={handleClose}>
+						Listo!
+					</Button>
+				</Modal.Footer>
+			</Modal>
 		</div>
 	);
 };
 
 ModalRegister.propTypes = {
-	info: PropTypes.object,
-	show: PropTypes.bool
+	show: PropTypes.bool,
+	nombre: PropTypes.string,
+	handleClose: PropTypes.func
 };
