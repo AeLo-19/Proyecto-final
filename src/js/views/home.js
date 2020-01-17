@@ -1,13 +1,24 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
-import { Carousel, Button } from "react-bootstrap";
-import { Navbar } from "../component/Navbar";
+import { Carousel, Button, Navbar, Nav } from "react-bootstrap";
+// import { Navbar } from "../component/Navbar";
 import { Footer } from "../component/Footer";
+import "../../styles/home.scss";
 
 export const Home = () => {
 	return (
-		<div>
-			<Navbar />
+		<div className="p-1 m-1 texto">
+			<Navbar bg="light" sticky="top" expand="lg">
+				<Navbar.Brand href="#home">Estética Medica Vital</Navbar.Brand>
+				<Navbar.Toggle aria-controls="basic-navbar-nav" />
+				<Navbar.Collapse id="basic-navbar-nav">
+					<Nav className="mr-auto">
+						<Nav.Link href="#precios">Precios</Nav.Link>
+						<Nav.Link href="#citas">Citas</Nav.Link>
+						<Nav.Link href="#ayuda">Ayuda</Nav.Link>
+					</Nav>
+				</Navbar.Collapse>
+			</Navbar>
 			<Carousel>
 				<Carousel.Item>
 					<img
@@ -45,18 +56,33 @@ export const Home = () => {
 					</Carousel.Caption>
 				</Carousel.Item>
 			</Carousel>
-			<div className="d-block w-100">
+			<div className="d-block w-100 m-2" name="precios">
 				<h2>Lista de precios</h2>
-				<Button variant="primary">Precios</Button>
+				<p>Para saber el precios del tratamiento de su elección seleccionelo.</p>
+				{/* <Button variant="primary">Precios</Button> */}
+				<div ClassName="col-12">
+					<select name="select" ClassName="form-control col-6">
+						<option value="value1">Value 1</option>
+						<option value="value2" selected>
+							Elige tu tratamiento!
+						</option>
+						<option value="value3">Value 3</option>
+					</select>
+					<label className=" mt-3 mb-3 col-6">Yo voy a cambiar y mostrar el precio</label>
+				</div>
+				<p className="text-muted">Los precios están sujetos a cambios.</p>
 			</div>
-			<div className="d-block w-100">
+			<div className="d-block w-100" name="citas">
 				<h2>Citas</h2>
+				<p>
+					Para poder reservar el día de su cita por favor haga click en el botón y dirijase a la proxima
+					ventana.
+				</p>
 				<Button variant="primary">Pedir Cita</Button>
 			</div>
-			<div className="d-block w-100">
+			<div className="d-block w-100" name="ayuda">
 				<h2>Ayuda</h2>
 			</div>
-			<Footer />
 		</div>
 	);
 };
