@@ -3,8 +3,9 @@ import emlLogo from "../../img/EML-logo.png";
 import "../../styles/home.scss";
 import { Link } from "react-router-dom";
 
-export const Login = () => (
+export const LoginDr = () => (
 	<div className="border m-3">
+		<h4 className="m-3">Página Ejecutiva</h4>
 		<div className="border logo m-3 justify-item-center">
 			<img src={emlLogo} width="280px" height="240px" />
 		</div>
@@ -22,23 +23,7 @@ export const Login = () => (
 					Entrar
 				</button>
 			</div>
-			<div className="borde">
-				<Link to="/register">
-					<button type="button" className="btn btn-primary">
-						Registrarse
-					</button>
-				</Link>
-			</div>
-			<div className="col-12">
-				<div className="col-6 inline-block">
-					<p className="text-muted">
-						Si usted trabaja acá haga click
-						<Link to="/login/:loginDr">
-							<p className="text-muted text-primary">AQUÍ</p>
-						</Link>
-					</p>
-				</div>
-			</div>
+			<div className="borde" />
 		</form>
 	</div>
 );

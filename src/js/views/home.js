@@ -9,7 +9,7 @@ export const Home = () => {
 	return (
 		<div className="p-1 m-1 texto">
 			<Navbar bg="light" sticky="top" expand="lg">
-				<Navbar.Brand href="#home">Estética Medica Vital</Navbar.Brand>
+				<Navbar.Brand href="#home">Estetica Medica Vital</Navbar.Brand>
 				<Navbar.Toggle aria-controls="basic-navbar-nav" />
 				<Navbar.Collapse id="basic-navbar-nav">
 					<Nav className="mr-auto">
@@ -22,25 +22,25 @@ export const Home = () => {
 			<Carousel>
 				<Carousel.Item>
 					<img
-						className="d-block w-100"
-						src="https://via.placeholder.com/800x400.png/09f/fff"
-						alt="First slide"
+						className="d-block w-150"
+						src="https://image.posta.com.mx/sites/default/files/instagram-app.jpg"
+						alt="REDES SOCIALES"
+						href="https://www.instagram.com/esteticamedicavital/"
+						width="370px"
+						height="200px"
 					/>
-					<Carousel.Caption>
-						<h3>First slide label</h3>
-						<p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-					</Carousel.Caption>
 				</Carousel.Item>
 				<Carousel.Item>
 					<img
 						className="d-block w-100"
 						src="https://via.placeholder.com/800x400.png/09f/fff"
 						alt="Third slide"
+						width="370px"
+						height="200px"
 					/>
 
 					<Carousel.Caption>
 						<h3>Second slide label</h3>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
 					</Carousel.Caption>
 				</Carousel.Item>
 				<Carousel.Item>
@@ -48,11 +48,12 @@ export const Home = () => {
 						className="d-block w-100"
 						src="https://via.placeholder.com/800x400.png/09f/fff"
 						alt="Third slide"
+						width="370px"
+						height="200px"
 					/>
 
 					<Carousel.Caption>
 						<h3>Third slide label</h3>
-						<p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
 					</Carousel.Caption>
 				</Carousel.Item>
 			</Carousel>
