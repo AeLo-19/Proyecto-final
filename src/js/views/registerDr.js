@@ -3,12 +3,10 @@ import emlLogo from "../../img/EML-Isotype.png";
 import { Link } from "react-router-dom";
 import { ModalRegister } from "../component/ModalRegister";
 import { Modal, Button } from "react-bootstrap";
-import { Context } from "../store/appContext";
 
 import "../../styles/register.scss";
 
-export const Register = () => {
-	const { store, actions } = useContext(Context);
+export const RegisterDr = () => {
 	const [password, setPassword] = useState("");
 	const [error, setError] = useState(false);
 	const [isBtnDisable, setIsBtnDisable] = useState(true);
@@ -19,31 +17,9 @@ export const Register = () => {
 		apellido: "",
 		correo: "",
 		edad: "",
-		cedula: "",
-		telefono: ""
+		cedula: ""
 	});
 	const [show, setShow] = useState(false);
-	const [primeraCarga, setPrimeraCarga] = useState(true);
-	var registro = {
-		name: info.nombre,
-		lastname: info.apellido,
-		email: info.correo,
-		password: password,
-		date_of_birth: info.edad,
-		cedula: info.cedula,
-		phone: info.telefono
-	};
-	useEffect(
-		() => {
-			setPrimeraCarga(false);
-
-			if (primeraCarga) {
-			} else {
-				setShow(true);
-			}
-		},
-		[store.validRegistration]
-	);
 	const actualizarEstado = e => {
 		setconfirmPassword(e.target.value);
 	};
@@ -65,14 +41,13 @@ export const Register = () => {
 			info.apellido === "" ||
 			info.correo === "" ||
 			info.edad === "" ||
-			info.cedula === "" ||
-			info.telefono === ""
+			info.cedula === ""
 		) {
 			console.log("encontramos un problema");
 			setError(true);
 		} else {
 			console.log("éxito, mostrando modal");
-			actions.fetchUserCreate(registro);
+			setShow(true);
 		}
 	};
 	useEffect(
@@ -168,17 +143,13 @@ export const Register = () => {
 					</div>
 					<div className="col-3">
 						<select className="form-control" defaultValue={"Venezolana"}>
-							<option value="V-">V-</option>
-							<option value="E-">E-</option>
+							<option value="Venezolana">V-</option>
+							<option value="Extranjera">E-</option>
 						</select>
 					</div>
 					<div className="col-9">
 						<input name="cedula" className="form-control" placeholder="C.I." onChange={handleValidation} />
 					</div>
-				</div>
-				<div clasName="col-12 border m-1 form-group">
-					<h5 className="texto">Teléfono</h5>
-					<input className="form-control" name="telefono" type="text" onChange={handleValidation} />
 				</div>
 				<div className="border col-12 text-center">
 					<button disabled={isBtnDisable} type="submit" className="btn btn-block btn-primary">

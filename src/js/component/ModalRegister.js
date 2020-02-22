@@ -11,11 +11,11 @@ export const ModalRegister = ({ show, nombre, handleClose }) => {
 		<div>
 			<Modal show={show} onHide={handleClose}>
 				<Modal.Header>
-					<Modal.Title>Soy el título</Modal.Title>
+					<Modal.Title>Perfecto!</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>{"Hola " + nombre + ", el  registro ha sido efectivo"}</Modal.Body>
 				<Modal.Footer>
-					<Link to="/home">
+					<Link to="/">
 						<Button variant="primary" onClick={handleClose}>
 							Listo!
 						</Button>

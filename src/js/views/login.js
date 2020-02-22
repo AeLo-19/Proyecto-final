@@ -31,12 +31,12 @@ export const Login = () => (
 			</div>
 			<div className="col-12">
 				<div className="col-6 inline-block">
-					<p className="text-muted">
+					{/* <p className="text-muted">
 						Si usted trabaja acá haga click
 						<Link to="/login/:loginDr">
 							<p className="text-muted text-primary">AQUÍ</p>
 						</Link>
-					</p>
+					</p> */}
 				</div>
 			</div>
 		</form>
