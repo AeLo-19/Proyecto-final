@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { Carousel, Button, Navbar, Nav, Form } from "react-bootstrap";
 // import { Navbar } from "../component/Navbar";
 import { Footer } from "../component/Footer";
+import { Context } from "../store/appContext";
+
 import "../../styles/home.scss";
 
 export const Home = () => {

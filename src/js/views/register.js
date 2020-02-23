@@ -29,7 +29,7 @@ export const Register = () => {
 		lastname: info.apellido,
 		email: info.correo,
 		password: password,
-		date_of_birth: info.edad,
+		dateOfBirth: info.edad,
 		cedula: info.cedula,
 		phone: info.telefono
 	};
@@ -71,7 +71,6 @@ export const Register = () => {
 			console.log("encontramos un problema");
 			setError(true);
 		} else {
-			console.log("éxito, mostrando modal");
 			actions.fetchUserCreate(registro);
 		}
 	};
@@ -154,7 +153,13 @@ export const Register = () => {
 				</div>
 				<div className="col-12 m-1">
 					<h5 className="texto">Fecha de Nacimiento</h5>
-					<input name="edad" className="form-control" type="date" onChange={handleValidation} />
+					<input
+						name="edad"
+						className="form-control"
+						type="date"
+						dateFormat="YYYY/MM/dd"
+						onChange={handleValidation}
+					/>
 				</div>
 				<div className="border m-1 col-12">
 					<h5 className="texto">Contraseña</h5>
