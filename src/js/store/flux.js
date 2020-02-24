@@ -47,7 +47,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						});
 					}
 				} catch (error) {
-					console.log("EN algo la cagaste.");
+					console.log("En algo la cagaste.");
 					console.log(error);
 				}
 			},
