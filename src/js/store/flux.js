@@ -71,10 +71,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 						}
 					});
 					if (reponse.ok) {
+						tratamientosNuevos = await response.json();
 						console.log(tratamientosNuevos);
-						tratamientosNuevos = response.json()
 						setStore({
-							tratamientos = tratamientosNuevos
+							tratamientos: tratamientosNuevos
 						});
 					} else if (response.status > 400) {
 						console.log("no se encontraron tratamientos");
@@ -84,7 +84,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.log(error);
 				}
 				setStore({
-					tratamientos: tratamientos
+					tratamientos: tratamientosNuevos
 				});
 			},
 			fetchPostCita: async informacion => {
@@ -114,38 +114,39 @@ const getState = ({ getStore, getActions, setStore }) => {
 							"Content-Type": "application/JSON"
 						}
 					});
-					if (response.ok){
-						citasNuevas = response.json();
+					if (response.ok) {
+						citasNuevas = await response.json();
 						setStore({
-							citas = citasNuevas
-						})
+							citas: citasNuevas
+						});
 					}
 				} catch (error) {
 					console.log("Se nota que no entiendes muy bien esta vaina");
 					console.log(error);
 				}
 			},
-			fetchPutCita: async aceptado =>{
+			fetchPutCita: async aceptado => {
 				const store = getStore();
-				try{
+				try {
 					let response = await fetch(ApiUrlEspecificCita, {
 						method: "PUT",
 						headers: {
 							"Content-Type": "application/JSON"
-						}
+						},
+						body: {}
 					});
-					if (response.ok){
-						console.log(response.json())
-						console.log("Bien hecho has aceptado una cita")
+					if (response.ok) {
+						console.log(response.json());
+						console.log("Bien hecho has aceptado una cita");
 					} else {
 						console.log("En algo la cagaste... otra vez");
 						console.log(response.status);
 						console.log(response.statusText);
-						console.log(response.json())
-					} 
-					}catch(error){
-						console.log ("Ya no te diré nada chimbo WEBON");
-						console.log(error)
+						console.log(response.json());
+					}
+				} catch (error) {
+					console.log("Ya no te diré nada chimbo WEBON");
+					console.log(error);
 				}
 			}
 		}

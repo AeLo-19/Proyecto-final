@@ -8,6 +8,13 @@ import { Context } from "../store/appContext";
 import "../../styles/home.scss";
 
 export const Home = () => {
+	const { store, actions } = useContext(Context);
+	actions.fetchGetTratamiento();
+
+	// const createOption = () => {
+	// 	actions.fetchGetTratamiento();
+	// 	;
+	// };
 	return (
 		<div className="p-1 m-1 texto">
 			<Navbar bg="light" sticky="top" expand="lg">
@@ -24,11 +31,13 @@ export const Home = () => {
 				<Form.Group>
 					<Form.Label>Seleccione el tratamiento que desea</Form.Label>
 					<Form.Control as="select">
-						<option>1</option>
-						<option>2</option>
-						<option>3</option>
-						<option>4</option>
-						<option>5</option>
+						{store.tratamientos.map(tratamientos => {
+							return (
+								<options key={tratamientos.id} value={tratamientos.tratamientoName}>
+									{tratamientos.tratamientoName}
+								</options>
+							);
+						})}
 					</Form.Control>
 				</Form.Group>
 				<Form.Group>
