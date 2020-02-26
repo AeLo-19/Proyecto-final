@@ -27,7 +27,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.log(response.status);
 					console.log(response.json);
 					if (response.ok) {
-						push("/home");
+						// push("/home");
 					}
 				} catch (error) {
 					console.log(response.status);
@@ -60,14 +60,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.log(error);
 				}
 			},
-			fetchGetTratamiento: async () => {
+			fetchGetTratamientos: async () => {
 				const store = getStore();
 				let tratamientosNuevos = [];
 				try {
 					let response = await fetch(ApiUrlTratamiento, {
 						method: "GET",
 						headers: {
-							"Content-Type": "application/JSON"
+							"Content-Type": "application/json"
 						}
 					});
 					if (reponse.ok) {
@@ -83,9 +83,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.log("something failed");
 					console.log(error);
 				}
-				setStore({
-					tratamientos: tratamientosNuevos
-				});
 			},
 			fetchPostCita: async informacion => {
 				const store = getStore();
@@ -136,7 +133,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						body: {}
 					});
 					if (response.ok) {
-						console.log(response.json());
+						// console.log(response.json());
 						console.log("Bien hecho has aceptado una cita");
 					} else {
 						console.log("En algo la cagaste... otra vez");

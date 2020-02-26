@@ -9,7 +9,43 @@ import "../../styles/home.scss";
 
 export const Home = () => {
 	const { store, actions } = useContext(Context);
-	actions.fetchGetTratamiento();
+	const [error, setError] = useState(false);
+	const [cita, setCita] = useState({
+		tratamiento: "",
+		fecha: ""
+	});
+	var crearCita = {
+		date: cita.fecha,
+		tratamiento_value: cita.tratamiento
+	};
+	const handleValidation = e => {
+		setCita({
+			...cita,
+			[e.target.name]: e.target.value
+		});
+	};
+	const iniciarValidacion = e => {
+		e.preventDefault();
+		console.log("validando");
+		if (cita.fecha === "" || cita.tratamiento === "") {
+			console.log("encontramos un problema");
+			setError(true);
+		} else {
+			actions.fetchUserCreate(registro);
+		}
+	};
+	var validationError;
+
+	if (error) {
+		validationError = (
+			<div className="text-danger">
+				<p>Verifíque que todos los campos han sido seleccionados.</p>
+			</div>
+		);
+	} else {
+		validationError = null;
+	}
+	actions.fetchGetTratamientos();
 
 	// const createOption = () => {
 	// 	actions.fetchGetTratamiento();
@@ -27,7 +63,7 @@ export const Home = () => {
 				</Navbar.Collapse>
 			</Navbar>
 			<h1>Pedir cita</h1>
-			<Form>
+			<Form onSubmit={iniciarValidacion}>
 				<Form.Group>
 					<Form.Label>Seleccione el tratamiento que desea</Form.Label>
 					<Form.Control as="select">
@@ -41,19 +77,22 @@ export const Home = () => {
 					</Form.Control>
 				</Form.Group>
 				<Form.Group>
-					<Form.Label>Elija el horario que desea</Form.Label>
-					<Form.Control as="select">
-						<option>1</option>
-						<option>2</option>
-						<option>3</option>
-						<option>4</option>
-						<option>5</option>
-					</Form.Control>
+					<div className="col-12 m-1">
+						<h5 className="texto">Elija la fecha que desea para su cita</h5>
+						<input
+							name="fecha"
+							className="form-control"
+							type="date"
+							// dateFormat="YYYY/MM/dd"
+							onChange={handleValidation}
+						/>
+					</div>
 				</Form.Group>
 				<Form.Group>
 					<Button variant="primary" type="submit">
 						Submit
 					</Button>
+					<div className="col-12">{validationError}</div>
 				</Form.Group>
 			</Form>
 		</div>
