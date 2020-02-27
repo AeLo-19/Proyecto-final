@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { Carousel, Button, Navbar, Nav, Form } from "react-bootstrap";
 // import { Navbar } from "../component/Navbar";
 import { Footer } from "../component/Footer";
@@ -14,10 +14,11 @@ export const Home = () => {
 		tratamiento: "",
 		fecha: ""
 	});
+	let tratamiento_id = parseInt(cita.tratamiento);
 	var crearCita = {
 		date: cita.fecha,
-		tratamiento_value: cita.tratamiento,
-		state: false
+		state: "false",
+		tratamiento_value: tratamiento_id
 	};
 	const handleValidation = e => {
 		setCita({
@@ -59,6 +60,10 @@ export const Home = () => {
 			// cleanup
 		};
 	}, []);
+	if (store.loggedIn) {
+	} else {
+		return <Redirect to="/" />;
+	}
 
 	return (
 		<div className="p-1 m-1 texto">
@@ -81,31 +86,31 @@ export const Home = () => {
 						onChange={e => {
 							setCita({
 								...cita,
-								tratamiento: e.target.key
+								tratamiento: e.target.value
 							});
 						}}>
 						{store.tratamientos &&
 							store.tratamientos.map(tratamiento => {
 								return (
-									<option key={tratamiento.id} value={tratamiento.tratamientoName}>
+									<option key={tratamiento.id} value={tratamiento.id}>
 										{tratamiento.tratamientoName}
 									</option>
 								);
 							})}
 					</Form.Control>
 				</Form.Group>
-				<Form.Group>
-					<div className="col-12 m-1">
-						<h5 className="texto">Elija la fecha que desea para su cita</h5>
-						<input
-							name="fecha"
-							className="form-control"
-							type="date"
-							// dateFormat="YYYY/MM/dd"
-							onChange={handleValidation}
-						/>
-					</div>
-				</Form.Group>
+
+				<div className="col-12 m-1">
+					<h5 className="texto">Elija la fecha que desea para su cita</h5>
+					<input
+						name="fecha"
+						className="form-control"
+						type="date"
+						dateFormat="YYYY/MM/dd"
+						onChange={handleValidation}
+					/>
+				</div>
+
 				<Form.Group>
 					<Button variant="primary" type="submit">
 						Submit

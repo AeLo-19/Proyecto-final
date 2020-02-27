@@ -2,8 +2,10 @@ import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { Carousel, Button, Navbar, Nav, ListGroup, List } from "react-bootstrap";
 import { ModalInfoCita } from "../component/ModalCitasInfo";
+import { Context } from "../store/appContext";
 
 export const CitaDr = () => {
+	const { store, actions } = useContext(Context);
 	const [show, setShow] = useState(false);
 	const [infoCita, setInfoCita] = useState({
 		nombre: "",
@@ -15,6 +17,18 @@ export const CitaDr = () => {
 	const handleClose = () => {
 		setShow(false);
 	};
+	useEffect(() => {
+		// cargar tratamientos del backend
+		const getCitas = async () => {
+			console.log("bout to fetch");
+			let success = await actions.fetchGetCitas();
+		};
+		getCitas();
+
+		return () => {
+			// cleanup
+		};
+	}, []);
 	return (
 		<div>
 			<Navbar bg="light" sticky="top" expand="lg">
@@ -27,15 +41,11 @@ export const CitaDr = () => {
 				</Navbar.Collapse>
 			</Navbar>
 			<div className="m-2">
-				{/* <ListGroup>
-					{store.citas.map(citas => {
-						return (
-							<List.Item key={citas.id} onClick={openInfo}>
-								{tratamientos.tratamientoName}
-							</List.Item>
-						);
+				<ListGroup>
+					{store.citas.map(cita => {
+						return <ListGroup.Item key={cita.id}>{cita.plannedDate}</ListGroup.Item>;
 					})}
-				</ListGroup> */}
+				</ListGroup>
 				{/* <ModalInfoCita handleClose={handleClose} show={show} /> */}
 			</div>
 		</div>

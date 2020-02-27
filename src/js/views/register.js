@@ -181,7 +181,7 @@ export const Register = () => {
 						<input name="cedula" className="form-control" placeholder="C.I." onChange={handleValidation} />
 					</div>
 				</div>
-				<div clasName="col-12 border m-1 form-group">
+				<div className="col-12 border m-1 form-group">
 					<h5 className="texto">Teléfono</h5>
 					<input className="form-control" name="telefono" type="text" onChange={handleValidation} />
 				</div>
