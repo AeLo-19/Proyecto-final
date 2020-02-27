@@ -16,7 +16,8 @@ export const Home = () => {
 	});
 	var crearCita = {
 		date: cita.fecha,
-		tratamiento_value: cita.tratamiento
+		tratamiento_value: cita.tratamiento,
+		state: false
 	};
 	const handleValidation = e => {
 		setCita({
@@ -31,7 +32,7 @@ export const Home = () => {
 			console.log("encontramos un problema");
 			setError(true);
 		} else {
-			actions.fetchUserCreate(registro);
+			actions.fetchPostCita(crearCita);
 		}
 	};
 	var validationError;
@@ -45,12 +46,20 @@ export const Home = () => {
 	} else {
 		validationError = null;
 	}
-	actions.fetchGetTratamientos();
 
-	// const createOption = () => {
-	// 	actions.fetchGetTratamiento();
-	// 	;
-	// };
+	useEffect(() => {
+		// cargar tratamientos del backend
+		const getTratamientos = async () => {
+			console.log("bout to fetch");
+			let success = await actions.fetchGetTratamientos();
+		};
+		getTratamientos();
+
+		return () => {
+			// cleanup
+		};
+	}, []);
+
 	return (
 		<div className="p-1 m-1 texto">
 			<Navbar bg="light" sticky="top" expand="lg">
@@ -66,14 +75,23 @@ export const Home = () => {
 			<Form onSubmit={iniciarValidacion}>
 				<Form.Group>
 					<Form.Label>Seleccione el tratamiento que desea</Form.Label>
-					<Form.Control as="select">
-						{store.tratamientos.map(tratamientos => {
-							return (
-								<options key={tratamientos.id} value={tratamientos.tratamientoName}>
-									{tratamientos.tratamientoName}
-								</options>
-							);
-						})}
+					<Form.Control
+						as="select"
+						value={cita.tratamiento}
+						onChange={e => {
+							setCita({
+								...cita,
+								tratamiento: e.target.key
+							});
+						}}>
+						{store.tratamientos &&
+							store.tratamientos.map(tratamiento => {
+								return (
+									<option key={tratamiento.id} value={tratamiento.tratamientoName}>
+										{tratamiento.tratamientoName}
+									</option>
+								);
+							})}
 					</Form.Control>
 				</Form.Group>
 				<Form.Group>

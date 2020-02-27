@@ -1,8 +1,20 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
-import { Carousel, Button, Navbar, Nav, ListGroup } from "react-bootstrap";
+import { Carousel, Button, Navbar, Nav, ListGroup, List } from "react-bootstrap";
+import { ModalInfoCita } from "../component/ModalCitasInfo";
 
 export const CitaDr = () => {
+	const [show, setShow] = useState(false);
+	const [infoCita, setInfoCita] = useState({
+		nombre: "",
+		tratamiento: ""
+	});
+	const openInfo = () => {
+		setShow(true);
+	};
+	const handleClose = () => {
+		setShow(false);
+	};
 	return (
 		<div>
 			<Navbar bg="light" sticky="top" expand="lg">
@@ -15,15 +27,17 @@ export const CitaDr = () => {
 				</Navbar.Collapse>
 			</Navbar>
 			<div className="m-2">
-				<ListGroup>
-					<ListGroup.Item>Cras justo odio</ListGroup.Item>
-					<ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
-					<ListGroup.Item>Morbi leo risus</ListGroup.Item>
-					<ListGroup.Item>Porta ac consectetur ac</ListGroup.Item>
-					<ListGroup.Item>Vestibulum at eros</ListGroup.Item>
-				</ListGroup>
+				{/* <ListGroup>
+					{store.citas.map(citas => {
+						return (
+							<List.Item key={citas.id} onClick={openInfo}>
+								{tratamientos.tratamientoName}
+							</List.Item>
+						);
+					})}
+				</ListGroup> */}
+				{/* <ModalInfoCita handleClose={handleClose} show={show} /> */}
 			</div>
 		</div>
 	);
 };
-// Lista que se llena con el get y se puede actualizar con el PUT estado y el precio.
