@@ -7,12 +7,17 @@ import { Context } from "../store/appContext";
 export const CitaDr = () => {
 	const { store, actions } = useContext(Context);
 	const [show, setShow] = useState(false);
+	const [pacienteId, setPacienteId] = useState();
+	const [tratamientoId, setTratamientoId] = useState();
 	const [infoCita, setInfoCita] = useState({
 		nombre: "",
 		tratamiento: ""
 	});
-	const openInfo = () => {
+	const openInfo = (pacienteInfo, tratamientoInfo) => {
 		setShow(true);
+		setPacienteId(pacienteInfo);
+		setTratamientoId(tratamientoInfo);
+		console.log(pacienteId, tratamientoId);
 	};
 	const handleClose = () => {
 		setShow(false);
@@ -43,10 +48,20 @@ export const CitaDr = () => {
 			<div className="m-2">
 				<ListGroup>
 					{store.citas.map(cita => {
-						return <ListGroup.Item key={cita.id}>{cita.plannedDate}</ListGroup.Item>;
+						console.log(cita.pacienteId, cita.tratamientoId);
+						return (
+							<ListGroup.Item onClick={() => openInfo(cita.pacienteId, cita.tratamientoId)} key={cita.id}>
+								{cita.plannedDate}
+							</ListGroup.Item>
+						);
 					})}
 				</ListGroup>
-				{/* <ModalInfoCita handleClose={handleClose} show={show} /> */}
+				<ModalInfoCita
+					pacienteId={pacienteId}
+					tratamientoId={tratamientoId}
+					handleClose={handleClose}
+					show={show}
+				/>
 			</div>
 		</div>
 	);

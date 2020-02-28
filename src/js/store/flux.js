@@ -7,14 +7,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 	// 	"https://3000-daf31a1e-5d97-4ac9-9ca4-50d448abe4a1.ws-us02.gitpod.io/user/" + store.infoUser.id + "/citas";
 	const ApiUrlEspecificCita =
 		"https://3000-daf31a1e-5d97-4ac9-9ca4-50d448abe4a1.ws-us02.gitpod.io/user" + {} + "/citas/" + {};
-
 	return {
 		store: {
 			validRegistration: false,
 			loggedIn: false,
 			tratamientos: [],
 			infoUser: "",
-			citas: []
+			citas: [],
+			infoPaciente: [],
+			tratamiento: ""
 		},
 		actions: {
 			fetchUserLogin: async login => {
@@ -132,7 +133,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 				console.log(response.status);
 				if (response.ok) {
 					citasNuevas = await response.json();
-					console.log("estas son las citas que hay: " + citasNuevas);
+					console.log("estas son las citas que hay: ");
+					console.log(citasNuevas);
 					setStore({
 						citas: citasNuevas
 					});
@@ -163,6 +165,56 @@ const getState = ({ getStore, getActions, setStore }) => {
 					}
 				} catch (error) {
 					console.log("Ya no te diré nada chimbo WEBON");
+					console.log(error);
+				}
+			},
+			fetchGetInfoPaciente: async id_paciente => {
+				let infoPacienteNuevo = [];
+				console.log("empezando a traer informacion");
+				let response = await fetch(
+					"https://3000-daf31a1e-5d97-4ac9-9ca4-50d448abe4a1.ws-us02.gitpod.io/paciente/" + id_paciente,
+					{
+						method: "GET",
+						headers: {
+							"Content-Type": "application/json"
+						}
+					}
+				);
+				console.log(response.status);
+				if (response.ok) {
+					let informacion = await response.json();
+					console.log(informacion);
+					infoPacienteNuevo = informacion;
+					setStore({
+						infoPaciente: infoPacienteNuevo
+					});
+				} else {
+					let error = await response.json();
+					console.log(error);
+				}
+			},
+			fetchGetInfoTratamiento: async id_tratamiento => {
+				let infoTratamientoNuevo = [];
+				console.log("empezando a traer informacion");
+				let response = await fetch(
+					"https://3000-daf31a1e-5d97-4ac9-9ca4-50d448abe4a1.ws-us02.gitpod.io/tratamiento/" + id_tratamiento,
+					{
+						method: "GET",
+						headers: {
+							"Content-Type": "application/json"
+						}
+					}
+				);
+				console.log(response.status);
+				if (response.ok) {
+					let informacion = await response.json();
+					console.log(informacion);
+					infoTratamientoNuevo = informacion;
+					setStore({
+						tratamiento: infoTratamientoNuevo
+					});
+				} else {
+					let error = await response.json();
 					console.log(error);
 				}
 			}
