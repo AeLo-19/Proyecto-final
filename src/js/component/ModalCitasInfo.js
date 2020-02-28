@@ -30,17 +30,24 @@ export const ModalInfoCita = ({ show, handleClose, pacienteInfo, tratamientoInfo
 
 					<Modal.Body>
 						<h2>Paciente:</h2>
-						<p>{store.infoPaciente.nombre}</p>
+						<p>Nombre: {store.infoPaciente.name}</p>
 						<p>Apellido: {store.infoPaciente.lastname}</p>
 						<p>Correo: {store.infoPaciente.email}</p>
 						<p>Teléfono: {store.infoPaciente.phone}</p>
 						<p>Cédula: {store.infoPaciente.cedula}</p>
 						<p>Fecha de Nacimiento: {store.infoPaciente.fechaDeNacimiento}</p>
+						<h2>Tratamiento:</h2>
+						<p>Nombre: {store.tratamiento.tratamientoName}</p>
+						<p>Descripcion: {store.tratamiento.descripcion}</p>
+						<p>Precio: {store.tratamiento.price}</p>
 					</Modal.Body>
 
 					<Modal.Footer>
 						<Button variant="primary" onClick={handleClose}>
-							Listo!
+							Aceptar!
+						</Button>
+						<Button variant="secunadry" onClick={handleClose}>
+							Salir
 						</Button>
 					</Modal.Footer>
 				</Modal>

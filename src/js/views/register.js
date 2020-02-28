@@ -108,8 +108,8 @@ export const Register = () => {
 	}
 
 	return (
-		<div className="border m-2">
-			<div className="container border">
+		<div className=" m-2">
+			<div className="container ">
 				<div className="row">
 					<div className="col-12 text-center">
 						<img src={emlLogo} width="125px" height="125px" />
@@ -123,7 +123,7 @@ export const Register = () => {
 				</div>
 			</div>
 			<form onSubmit={iniciarValidacion}>
-				<div className="col-12 border m-1 form-group">
+				<div className="col-12  m-1 form-group">
 					<h5 className="texto">Nombres</h5>
 					<input
 						name="nombre"
@@ -141,7 +141,7 @@ export const Register = () => {
 						onChange={handleValidation}
 					/>
 				</div>
-				<div className="col-12 m-1 border">
+				<div className="col-12 m-1 ">
 					<h5 className="texto">Correo</h5>
 					<input
 						name="correo"
@@ -161,13 +161,14 @@ export const Register = () => {
 						onChange={handleValidation}
 					/>
 				</div>
-				<div className="border m-1 col-12">
+				<div className=" m-1 col-12">
 					<h5 className="texto">Contraseña</h5>
+					<small className="form-text text-muted">Mínimo 8 caracteres</small>
 					<input className="form-control" type="password" onChange={updateState} />
 					<h5 className="texto">Confirmar Contraseña</h5>
 					<input className="form-control" type="password" onChange={actualizarEstado} />
 				</div>
-				<div className="border m-1 row">
+				<div className=" m-1 row">
 					<div className="col-12">
 						<h5 className="texto">Cédula</h5>
 					</div>
@@ -181,11 +182,11 @@ export const Register = () => {
 						<input name="cedula" className="form-control" placeholder="C.I." onChange={handleValidation} />
 					</div>
 				</div>
-				<div className="col-12 border m-1 form-group">
+				<div className="col-12  m-1 form-group">
 					<h5 className="texto">Teléfono</h5>
 					<input className="form-control" name="telefono" type="text" onChange={handleValidation} />
 				</div>
-				<div className="border col-12 text-center">
+				<div className=" col-12 text-center">
 					<button disabled={isBtnDisable} type="submit" className="btn btn-block btn-primary">
 						Crear
 					</button>

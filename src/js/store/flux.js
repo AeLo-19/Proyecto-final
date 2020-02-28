@@ -1,12 +1,12 @@
 const getState = ({ getStore, getActions, setStore }) => {
-	const ApiUrl = "https://3000-f2bb8eed-a71e-4bbe-9058-74482554a4af.ws-us02.gitpod.io/";
+	const ApiUrl = "https://3000-e433c381-6eaa-4bfc-bdd6-cceaa8c1d20e.ws-us02.gitpod.io";
 	const ApiUrlRegister = ApiUrl + "/register";
 	const ApiUrlTratamiento = ApiUrl + "/tratamiento";
 	const ApiUrlLogin = ApiUrl + "/login";
 	const ApiUrlAllCitas = ApiUrl + "/citas";
 	// const ApiUrlEspecificUserCitas =
 	// 	"https://3000-daf31a1e-5d97-4ac9-9ca4-50d448abe4a1.ws-us02.gitpod.io/user/" + store.infoUser.id + "/citas";
-	const ApiUrlEspecificCita = ApiUrl + "/user" + {} + "/citas/" + {};
+	const ApiUrlEspecificCita = ApiUrl + "/user/" + {} + "/citas/" + {};
 	return {
 		store: {
 			validRegistration: false,

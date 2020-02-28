@@ -37,12 +37,12 @@ export const Login = () => {
 		return <Redirect to="/home" />;
 	}
 	return (
-		<div className="border m-3">
-			<div className="border logo m-3 justify-item-center">
+		<div className=" m-3">
+			<div className=" logo m-3 justify-item-center">
 				<img src={emlLogo} width="280px" height="240px" />
 			</div>
-			<form className="border m-3" onSubmit={handleLogIn}>
-				<div className="border">
+			<form className=" m-3" onSubmit={handleLogIn}>
+				<div className="">
 					<h5>Correo electrónico</h5>
 					<input
 						className="m-2"
@@ -60,7 +60,7 @@ export const Login = () => {
 						placeholder="Contraseña"
 					/>
 				</div>
-				<div className="border">
+				<div className="">
 					<button type="button" className="btn btn-primary" onClick={handleLogIn}>
 						Entrar
 					</button>

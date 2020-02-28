@@ -70,16 +70,9 @@ export const CitaDr = () => {
 							// onClick={() => openInfo(cita.pacienteId, cita.tratamientoId)}
 							<ListGroup.Item
 								key={cita.id}
-								className="col-12 m-1 space-between inline-block"
+								className="col-12 m-1  inline-block"
 								onClick={() => openInfo(cita.pacienteId, cita.tratamientoId)}>
 								Tienes una cita para la fecha: {cita.plannedDate}
-								<Button
-									variant="success"
-									value="aceptar"
-									// onClick={validarCita(cita.plannedDate, cita.state, cita.tratamientoId, cita.id)}
-								>
-									Aceptar
-								</Button>
 							</ListGroup.Item>
 						);
 					})}
