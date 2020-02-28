@@ -4,48 +4,43 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 
-export const ModalInfoCita = ({ show, handleClose, pacienteId, tratamientoId }) => {
+export const ModalInfoCita = ({ show, handleClose, pacienteInfo, tratamientoInfo }) => {
 	const { store, actions } = useContext(Context);
+	const [informacionPaciente, setInformacionPaciente] = useState({});
 	console.log(
 		"show:" +
 			show +
 			", handleClose: " +
 			handleClose +
-			"pacienteId: " +
-			pacienteId +
-			", tratamientoId:" +
-			tratamientoId
+			"pacienteInfo: " +
+			store.infoPaciente.name +
+			", tratamientoInfo:" +
+			store.tratamiento
 	);
-	if (show) {
-	} else {
-		useEffect(
-			() => {
-				const getInfo = async () => {
-					console.log("bout to fetch");
-					let success = await actions.fetchGetTratamientos(tratamientoId);
-					let hecho = await actions.fetchGetInfoPaciente(pacienteId);
-				};
-				getInfo();
-				return () => {
-					//cleanup
-				};
-			},
-			[show]
-		);
-	}
+
+	setInformacionPaciente(store.infoPaciente);
+
 	return (
 		<div>
 			<Modal show={show} onHide={handleClose}>
 				<Modal.Header>
 					<Modal.Title>Información</Modal.Title>
 				</Modal.Header>
-				<Modal.Body />
+
+				<Modal.Body>
+					<h2>Paciente:</h2>
+					<p>{pacienteInfo.nombre}</p>
+					<p>Apellido: {store.infoPaciente.lastname}</p>
+					<p>Correo: {store.infoPaciente.email}</p>
+					<p>Teléfono: {store.infoPaciente.phone}</p>
+					<p>Cédula: {store.infoPaciente.cedula}</p>
+					<p>Fecha de Nacimiento: {store.infoPaciente.fechaDeNacimiento}</p>
+				</Modal.Body>
+
 				<Modal.Footer>
-					<Link to="/home_dr">
-						<Button variant="primary" onClick={handleClose}>
-							Listo!
-						</Button>
-					</Link>
+					<Button variant="primary" onClick={handleClose}>
+						Listo!
+					</Button>
 				</Modal.Footer>
 			</Modal>
 		</div>
@@ -53,8 +48,8 @@ export const ModalInfoCita = ({ show, handleClose, pacienteId, tratamientoId }) 
 };
 
 ModalInfoCita.propTypes = {
-	pacienteId: PropTypes.integer,
-	tratamientoId: PropTypes.integer,
+	pacienteInfo: PropTypes.object,
+	tratamientoInfo: PropTypes.object,
 	show: PropTypes.bool,
 	handleClose: PropTypes.func
 };

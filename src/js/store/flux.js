@@ -15,7 +15,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			infoUser: "",
 			citas: [],
 			infoPaciente: [],
-			tratamiento: ""
+			tratamiento: []
 		},
 		actions: {
 			fetchUserLogin: async login => {
@@ -144,27 +144,29 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.log(error);
 				}
 			},
-			fetchPutCita: async aceptado => {
-				const store = getStore();
-				try {
-					let response = await fetch(ApiUrlEspecificCita, {
+			fetchPutCita: async (aceptado, cita_id) => {
+				let response = await fetch(
+					"https://3000-daf31a1e-5d97-4ac9-9ca4-50d448abe4a1.ws-us02.gitpod.io/citas/" + cita_id,
+					{
 						method: "PUT",
 						headers: {
 							"Content-Type": "application/JSON"
 						},
-						body: {}
-					});
-					if (response.ok) {
-						// console.log(response.json());
-						console.log("Bien hecho has aceptado una cita");
-					} else {
-						console.log("En algo la cagaste... otra vez");
-						console.log(response.status);
-						console.log(response.statusText);
-						console.log(response.json());
+						body: JSON.stringify(aceptado)
 					}
-				} catch (error) {
-					console.log("Ya no te diré nada chimbo WEBON");
+				);
+				console.log(response.status);
+				if (response.ok) {
+					let respuesta = await response.json();
+					console.log(respuesta);
+
+					// console.log(response.json());
+					console.log("Bien hecho has aceptado una cita");
+				} else {
+					let error = await response.json();
+					console.log("En algo la cagaste... otra vez");
+					console.log(response.status);
+					console.log(response.statusText);
 					console.log(error);
 				}
 			},
