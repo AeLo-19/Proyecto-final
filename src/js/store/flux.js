@@ -1,12 +1,12 @@
 const getState = ({ getStore, getActions, setStore }) => {
-	const ApiUrlRegister = "https://3000-daf31a1e-5d97-4ac9-9ca4-50d448abe4a1.ws-us02.gitpod.io/register";
-	const ApiUrlTratamiento = "https://3000-daf31a1e-5d97-4ac9-9ca4-50d448abe4a1.ws-us02.gitpod.io/tratamiento";
-	const ApiUrlLogin = "https://3000-daf31a1e-5d97-4ac9-9ca4-50d448abe4a1.ws-us02.gitpod.io/login";
-	const ApiUrlAllCitas = "https://3000-daf31a1e-5d97-4ac9-9ca4-50d448abe4a1.ws-us02.gitpod.io/citas";
+	const ApiUrl = "https://3000-f2bb8eed-a71e-4bbe-9058-74482554a4af.ws-us02.gitpod.io/";
+	const ApiUrlRegister = ApiUrl + "/register";
+	const ApiUrlTratamiento = ApiUrl + "/tratamiento";
+	const ApiUrlLogin = ApiUrl + "/login";
+	const ApiUrlAllCitas = ApiUrl + "/citas";
 	// const ApiUrlEspecificUserCitas =
 	// 	"https://3000-daf31a1e-5d97-4ac9-9ca4-50d448abe4a1.ws-us02.gitpod.io/user/" + store.infoUser.id + "/citas";
-	const ApiUrlEspecificCita =
-		"https://3000-daf31a1e-5d97-4ac9-9ca4-50d448abe4a1.ws-us02.gitpod.io/user" + {} + "/citas/" + {};
+	const ApiUrlEspecificCita = ApiUrl + "/user" + {} + "/citas/" + {};
 	return {
 		store: {
 			validRegistration: false,
@@ -14,7 +14,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			tratamientos: [],
 			infoUser: "",
 			citas: [],
-			infoPaciente: [],
+			infoPaciente: {},
 			tratamiento: []
 		},
 		actions: {
@@ -95,18 +95,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const store = getStore();
 				console.log(informacion);
 
-				let response = await fetch(
-					"https://3000-daf31a1e-5d97-4ac9-9ca4-50d448abe4a1.ws-us02.gitpod.io/user/" +
-						store.infoUser[0] +
-						"/citas",
-					{
-						method: "POST",
-						headers: {
-							"Content-Type": "application/json"
-						},
-						body: JSON.stringify(informacion)
-					}
-				);
+				let response = await fetch(ApiUrl + "/user/" + store.infoUser[0] + "/citas", {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json"
+					},
+					body: JSON.stringify(informacion)
+				});
 				console.log(response.status);
 				console.log(store.infoUser[0]);
 				console.log(informacion);
@@ -145,16 +140,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 			fetchPutCita: async (aceptado, cita_id) => {
-				let response = await fetch(
-					"https://3000-daf31a1e-5d97-4ac9-9ca4-50d448abe4a1.ws-us02.gitpod.io/citas/" + cita_id,
-					{
-						method: "PUT",
-						headers: {
-							"Content-Type": "application/JSON"
-						},
-						body: JSON.stringify(aceptado)
-					}
-				);
+				let response = await fetch(ApiUrl + "/citas/" + cita_id, {
+					method: "PUT",
+					headers: {
+						"Content-Type": "application/JSON"
+					},
+					body: JSON.stringify(aceptado)
+				});
 				console.log(response.status);
 				if (response.ok) {
 					let respuesta = await response.json();
@@ -171,17 +163,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 			fetchGetInfoPaciente: async id_paciente => {
-				let infoPacienteNuevo = [];
+				let infoPacienteNuevo = {};
 				console.log("empezando a traer informacion");
-				let response = await fetch(
-					"https://3000-daf31a1e-5d97-4ac9-9ca4-50d448abe4a1.ws-us02.gitpod.io/paciente/" + id_paciente,
-					{
-						method: "GET",
-						headers: {
-							"Content-Type": "application/json"
-						}
+				let response = await fetch(ApiUrl + "/paciente/" + id_paciente, {
+					method: "GET",
+					headers: {
+						"Content-Type": "application/json"
 					}
-				);
+				});
 				console.log(response.status);
 				if (response.ok) {
 					let informacion = await response.json();
@@ -198,15 +187,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 			fetchGetInfoTratamiento: async id_tratamiento => {
 				let infoTratamientoNuevo = [];
 				console.log("empezando a traer informacion");
-				let response = await fetch(
-					"https://3000-daf31a1e-5d97-4ac9-9ca4-50d448abe4a1.ws-us02.gitpod.io/tratamiento/" + id_tratamiento,
-					{
-						method: "GET",
-						headers: {
-							"Content-Type": "application/json"
-						}
+				let response = await fetch(ApiUrl + "/tratamiento/" + id_tratamiento, {
+					method: "GET",
+					headers: {
+						"Content-Type": "application/json"
 					}
-				);
+				});
 				console.log(response.status);
 				if (response.ok) {
 					let informacion = await response.json();

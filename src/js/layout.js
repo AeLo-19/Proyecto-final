@@ -27,7 +27,7 @@ export const Layout = () => {
 						<Route exact path="/" component={Login} />
 						<Route path="/register" component={Register} />
 						<Route path="/AD/regist_dr" component={RegisterDr} />
-						<Route path="/home" component={Home} />
+						<Route exact path="/home" component={Home} />
 						<Route path="/login/:DR" component={LoginDr} />
 						<Route path="/citas_dr" component={CitaDr} />
 						<Route render={() => <h1>Not found!</h1>} />

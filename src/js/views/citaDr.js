@@ -10,17 +10,18 @@ export const CitaDr = () => {
 	const [estado, setEstado] = useState();
 	const [valor, setValor] = useState();
 	const [id, setId] = useState();
-	// const [pacienteInfo, setPacienteInfo] = useState({});
-	// const [tratamientoInfo, setTratamientoInfo] = useState();
+	const [pacienteInfo, setPacienteInfo] = useState({});
+	const [tratamientoInfo, setTratamientoInfo] = useState();
+	const [show, setShow] = useState(false);
 
-	// const openInfo = (pacienteId, tratamientoId) => {
-	// 	setShow(true);
-	// 	actions.fetchGetTratamientos(tratamientoId);
-	// 	actions.fetchGetInfoPaciente(pacienteId);
-	// 	setPacienteInfo(store.infoPaciente);
-	// 	setTratamientoInfo(store.tratamiento);
-	// 	console.log(store.infoPaciente, store.tratamiento);
-	// };
+	const openInfo = async (pacienteId, tratamientoId) => {
+		setShow(true);
+		await actions.fetchGetInfoTratamiento(tratamientoId);
+		await actions.fetchGetInfoPaciente(pacienteId);
+		setPacienteInfo(store.infoPaciente);
+		setTratamientoInfo(store.tratamiento);
+		console.log(store.infoPaciente, store.tratamiento);
+	};
 	var aceptado = {
 		date: fecha,
 		state: true,
@@ -36,11 +37,11 @@ export const CitaDr = () => {
 	// 	actions.fetchPutCita(aceptado, id);
 	// };
 
-	// const handleClose = () => {
-	// 	setShow(false);
-	// };
+	const handleClose = () => {
+		setShow(false);
+	};
 	useEffect(() => {
-		// cargar tratamientos del backend
+		// cargar citas del backend
 		const getCitas = async () => {
 			console.log("bout to fetch");
 			let success = await actions.fetchGetCitas();
@@ -67,7 +68,10 @@ export const CitaDr = () => {
 					{store.citas.map(cita => {
 						return (
 							// onClick={() => openInfo(cita.pacienteId, cita.tratamientoId)}
-							<ListGroup.Item key={cita.id} className="col-12 m-1 space-between inline-block">
+							<ListGroup.Item
+								key={cita.id}
+								className="col-12 m-1 space-between inline-block"
+								onClick={() => openInfo(cita.pacienteId, cita.tratamientoId)}>
 								Tienes una cita para la fecha: {cita.plannedDate}
 								<Button
 									variant="success"
@@ -81,14 +85,10 @@ export const CitaDr = () => {
 					})}
 				</ListGroup>
 
-				{/* {store.infoPaciente && (
-					<ModalInfoCita
-						pacienteInfo={pacienteInfo}
-						tratamientoInfo={tratamientoInfo}
-						handleClose={handleClose}
-						show={show}
-					/>
-				)} */}
+				{store.infoPaciente &&
+					tratamientoInfo && (
+						<ModalInfoCita tratamientoInfo={tratamientoInfo} handleClose={handleClose} show={show} />
+					)}
 			</div>
 		</div>
 	);

@@ -18,31 +18,33 @@ export const ModalInfoCita = ({ show, handleClose, pacienteInfo, tratamientoInfo
 			store.tratamiento
 	);
 
-	setInformacionPaciente(store.infoPaciente);
+	// setInformacionPaciente(store.infoPaciente);
 
 	return (
 		<div>
-			<Modal show={show} onHide={handleClose}>
-				<Modal.Header>
-					<Modal.Title>Información</Modal.Title>
-				</Modal.Header>
+			{store.infoPaciente && (
+				<Modal show={show} onHide={handleClose}>
+					<Modal.Header>
+						<Modal.Title>Información</Modal.Title>
+					</Modal.Header>
 
-				<Modal.Body>
-					<h2>Paciente:</h2>
-					<p>{pacienteInfo.nombre}</p>
-					<p>Apellido: {store.infoPaciente.lastname}</p>
-					<p>Correo: {store.infoPaciente.email}</p>
-					<p>Teléfono: {store.infoPaciente.phone}</p>
-					<p>Cédula: {store.infoPaciente.cedula}</p>
-					<p>Fecha de Nacimiento: {store.infoPaciente.fechaDeNacimiento}</p>
-				</Modal.Body>
+					<Modal.Body>
+						<h2>Paciente:</h2>
+						<p>{store.infoPaciente.nombre}</p>
+						<p>Apellido: {store.infoPaciente.lastname}</p>
+						<p>Correo: {store.infoPaciente.email}</p>
+						<p>Teléfono: {store.infoPaciente.phone}</p>
+						<p>Cédula: {store.infoPaciente.cedula}</p>
+						<p>Fecha de Nacimiento: {store.infoPaciente.fechaDeNacimiento}</p>
+					</Modal.Body>
 
-				<Modal.Footer>
-					<Button variant="primary" onClick={handleClose}>
-						Listo!
-					</Button>
-				</Modal.Footer>
-			</Modal>
+					<Modal.Footer>
+						<Button variant="primary" onClick={handleClose}>
+							Listo!
+						</Button>
+					</Modal.Footer>
+				</Modal>
+			)}
 		</div>
 	);
 };

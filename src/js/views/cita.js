@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { Link, Redirect } from "react-router-dom";
 import { Carousel, Button, Navbar, Nav, Form } from "react-bootstrap";
 // import { Navbar } from "../component/Navbar";
-import { Footer } from "../component/Footer";
+import { Footer } from "../component/footer";
 import { Context } from "../store/appContext";
 
 import "../../styles/home.scss";
@@ -51,11 +51,11 @@ export const Home = () => {
 	useEffect(() => {
 		// cargar tratamientos del backend
 		const getTratamientos = async () => {
-			console.log("bout to fetch");
 			let success = await actions.fetchGetTratamientos();
 		};
-		getTratamientos();
-
+		if (store.tratamientos.length < 1) {
+			getTratamientos();
+		}
 		return () => {
 			// cleanup
 		};
